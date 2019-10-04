@@ -1,0 +1,63 @@
+## Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+## SPDX-License-Identifier: BSD-3-Clause
+
+########################################################################################
+## Generated for the distributed computing environment / remote procedure call replies #
+########################################################################################
+## c: The connection the Profinet communication is part of.
+## is_orig: True if this reflects originator-side activity.
+## self explanatory parameters
+## 
+event profinet_dce_rpc%(c: connection,
+                        is_orig: bool,
+                        version: count,
+                        packet_type: count,
+                        object_uuid_part1: count,
+                        object_uuid_part2: count,
+                        object_uuid_part3: count,
+                        object_uuid_part4: count,
+                        object_uuid_part5: string,
+                        interface_uuid_part1: count,
+                        interface_uuid_part2: count,
+                        interface_uuid_part3: count,
+                        interface_uuid_part4: count,
+                        interface_uuid_part5: string,
+                        activity_uuid_part1: count,
+                        activity_uuid_part2: count,
+                        activity_uuid_part3: count,
+                        activity_uuid_part4: count,
+                        activity_uuid_part5: string,
+                        server_boot_time: count,
+                        operation_number: count
+                        %);
+
+###########################################
+## Generated for all the Profinet headers #
+###########################################
+## c: The connection the Profinet communication is part of.
+## is_orig: True if this reflects originator-side activity.
+## operation_type: Header code (see const.bro).
+## command1: command1 type.
+## command2: look at consts.bro for more info
+## 
+event profinet%(c: connection,
+                is_orig: bool,
+                operation_type: count,
+                block_version_high: count,
+                block_version_low: count,
+                slot_number: count,
+                subslot_number: count,
+                index: count
+                %);
+
+#################################
+## Generated for the debug info #
+#################################
+## c: The connection the Profinet communication is part of.
+## is_orig: True if this reflects originator-side activity.
+## raw_data: dump everything here
+## 
+event profinet_debug%(c: connection,
+                        is_orig: bool,
+                        raw_data: string
+                        %);
