@@ -1,4 +1,6 @@
 [package]
 script_dir = scripts
 build_command = ./configure && make
+tags = zeek plugin, protocol analyzer, log writer, ics, profinet
+description = Plugin that enables parsing of the Profinet protocol
 
