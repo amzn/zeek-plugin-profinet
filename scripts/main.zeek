@@ -1,9 +1,10 @@
-## Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-## SPDX-License-Identifier: BSD-3-Clause
+##! Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+##! SPDX-License-Identifier: BSD-3-Clause
 
 ##! Implements base functionality for Profinet analysis.
 ##! Generates the profinet_dce_rpc.log file, containing some information about the Profinet_DCE_RPC headers.
 ##! Generates the profinet.log file, containing some information about the Profinet communication.
+##! Generates the profinet_debug.log file, containing some information about unknown/missed profinet data.
 
 module Profinet;
 
