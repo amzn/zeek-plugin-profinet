@@ -15,7 +15,7 @@ void PROFINET_Analyzer::Done() {
     Analyzer::Done();
     }
 
-void PROFINET_Analyzer::DeliverPacket(int len, const u_char* data, bool orig, uint64 seq, const IP_Hdr* ip, int caplen) {
+void PROFINET_Analyzer::DeliverPacket(int len, const u_char* data, bool orig, uint64_t seq, const IP_Hdr* ip, int caplen) {
     Analyzer::DeliverPacket(len, data, orig, seq, ip, caplen);
 
     try {
