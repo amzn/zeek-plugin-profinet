@@ -1,3 +1,3 @@
-@load ./consts
-@load ./main
+@load ./consts.zeek
+@load ./main.zeek
 
