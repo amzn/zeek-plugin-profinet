@@ -14,6 +14,6 @@ plugin::Configuration Plugin::Configure() {
     
     plugin::Configuration config;
     config.name = "Zeek::PROFINET";
-    config.description = "Profinet Protocol analyzer";
+    config.description = "PROFINET protocol analyzer";
     return config;
     }

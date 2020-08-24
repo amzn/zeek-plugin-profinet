@@ -6,8 +6,8 @@
     %}
 
 analyzer PROFINET withcontext {
-    connection:    PROFINET_Conn;
-    flow:        PROFINET_Flow;
+    connection: PROFINET_Conn;
+    flow:       PROFINET_Flow;
     };
 
 %include profinet-protocol.pac
