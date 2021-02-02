@@ -1,6 +1,6 @@
 ## Zeek Plugin PROFINET
 
-When running as part of your Zeek installation this plugin will produce two log files containing metadata extracted from any [PROFINET](https://www.profibus.com/technology/profinet/) traffic observed on UDP port 34694.
+When running as part of your Zeek installation this plugin will produce two log files containing metadata extracted from any [PROFINET](https://www.profibus.com/technology/profinet/) traffic observed on UDP port 34964.
 
 ## Installation and Usage
 
