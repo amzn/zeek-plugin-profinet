@@ -32,7 +32,7 @@ export {
 
     ## Event that can be handled to access the profinet record as it is sent to the loggin framework.
     global log_profinet_dce_rpc: event(rec: Profinet_DCE_RPC);
-        
+
     ## header info
     type Profinet: record {
         ts              : time &log;                ## Timestamp for when the event happened.
@@ -59,7 +59,7 @@ export {
         };
 
     ## Event that can be handled to access the profinet record as it is sent to the loggin framework.
-    global log_profinet_debug: event(rec: Profinet_Debug);    
+    global log_profinet_debug: event(rec: Profinet_Debug);
     }
 
 redef record connection += {
@@ -84,7 +84,7 @@ event zeek_init() &priority=5 {
     Log::create_stream(Profinet::Log_Profinet,
                         [$columns=Profinet,
                         $ev=log_profinet,
-                        $path="profinet"]);    
+                        $path="profinet"]);
     Log::create_stream(Profinet::Log_Profinet_Debug,
                         [$columns=Profinet_Debug,
                         $ev=log_profinet_debug,
@@ -116,6 +116,7 @@ event profinet_dce_rpc(c:connection, is_orig: bool,
                         ) {
     if(!c?$profinet_dce_rpc) {
         c$profinet_dce_rpc = [$ts=network_time(), $uid=c$uid, $id=c$id];
+        add c$service["profinet_dce_rpc"];
         }
 
     c$profinet_dce_rpc$ts = network_time();
@@ -138,7 +139,7 @@ event profinet_dce_rpc(c:connection, is_orig: bool,
                                             bytestring_to_hexstr(activity_uuid_part5));
     c$profinet_dce_rpc$server_boot_time = server_boot_time;
     c$profinet_dce_rpc$operation = operations[operation_number];
-    
+
     Log::write(Log_Profinet_DCE_RPC, c$profinet_dce_rpc);
     }
 
@@ -153,6 +154,7 @@ event profinet(c:connection, is_orig: bool,
                 ) {
     if(!c?$profinet) {
         c$profinet = [$ts=network_time(), $uid=c$uid, $id=c$id];
+        add c$service["profinet"];
         }
 
     c$profinet$ts = network_time();
@@ -169,6 +171,7 @@ event profinet(c:connection, is_orig: bool,
 event profinet_debug(c:connection, is_orig: bool, raw_data: string) {
     if(!c?$profinet_debug) {
         c$profinet_debug = [$ts=network_time(), $uid=c$uid, $id=c$id];
+        add c$service["profinet"];
         }
 
     c$profinet_debug$ts = network_time();
