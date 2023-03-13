@@ -17,7 +17,7 @@ flow PROFINET_Flow(is_orig: bool) {
 
     function profinet_dce_rpc(header: Profinet_DCE_RPC): bool %{
         if(::profinet_dce_rpc) {
-            connection()->zeek_analyzer()->ProtocolConfirmation();
+            connection()->zeek_analyzer()->AnalyzerConfirmation();
             zeek::BifEvent::enqueue_profinet_dce_rpc(connection()->zeek_analyzer(),
                                                      connection()->zeek_analyzer()->Conn(),
                                                      is_orig(),
@@ -48,7 +48,7 @@ flow PROFINET_Flow(is_orig: bool) {
 
     function profinet(header: PROFINET): bool %{
         if(::profinet) {
-            connection()->zeek_analyzer()->ProtocolConfirmation();
+            connection()->zeek_analyzer()->AnalyzerConfirmation();
             zeek::BifEvent::enqueue_profinet(connection()->zeek_analyzer(),
                                              connection()->zeek_analyzer()->Conn(),
                                              is_orig(),
@@ -66,7 +66,7 @@ flow PROFINET_Flow(is_orig: bool) {
 
     function profinet_debug(raw_data: bytestring): bool %{
         if(::profinet_debug) {
-            connection()->zeek_analyzer()->ProtocolViolation(zeek::util::fmt("unknown ProfiNet"));
+            connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("unknown ProfiNet"));
             zeek::BifEvent::enqueue_profinet_debug(connection()->zeek_analyzer(),
                                                    connection()->zeek_analyzer()->Conn(),
                                                    is_orig(),
