@@ -62,6 +62,11 @@ export {
     global log_profinet_debug: event(rec: Profinet_Debug);
     }
 
+    ## Log policies, for log filtering.
+    global log_policy_profinet: Log::PolicyHook;
+    global log_policy_profinet_dce_rpc: Log::PolicyHook;
+    global log_policy_profinet_debug: Log::PolicyHook;
+
 redef record connection += {
     profinet_dce_rpc: Profinet_DCE_RPC &optional;
     profinet        : Profinet &optional;
@@ -80,15 +85,18 @@ event zeek_init() &priority=5 {
     Log::create_stream(Profinet::Log_Profinet_DCE_RPC,
                         [$columns=Profinet_DCE_RPC,
                         $ev=log_profinet_dce_rpc,
-                        $path="profinet_dce_rpc"]);
+                        $path="profinet_dce_rpc",
+                        $policy=log_policy_profinet_dce_rpc]);
     Log::create_stream(Profinet::Log_Profinet,
                         [$columns=Profinet,
                         $ev=log_profinet,
-                        $path="profinet"]);
+                        $path="profinet",
+                        $policy=log_policy_profinet]);
     Log::create_stream(Profinet::Log_Profinet_Debug,
                         [$columns=Profinet_Debug,
                         $ev=log_profinet_debug,
-                        $path="profinet_debug"]);
+                        $path="profinet_debug",
+                        $policy=log_policy_profinet_debug]);
     Analyzer::register_for_ports(Analyzer::ANALYZER_PROFINET, ports);
     }
 
