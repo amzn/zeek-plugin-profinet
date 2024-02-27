@@ -60,12 +60,12 @@ export {
 
     ## Event that can be handled to access the profinet record as it is sent to the loggin framework.
     global log_profinet_debug: event(rec: Profinet_Debug);
-    }
 
     ## Log policies, for log filtering.
     global log_policy_profinet: Log::PolicyHook;
     global log_policy_profinet_dce_rpc: Log::PolicyHook;
     global log_policy_profinet_debug: Log::PolicyHook;
+    }
 
 redef record connection += {
     profinet_dce_rpc: Profinet_DCE_RPC &optional;
