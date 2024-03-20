@@ -33,6 +33,8 @@ export {
     ## Event that can be handled to access the profinet record as it is sent to the loggin framework.
     global log_profinet_dce_rpc: event(rec: Profinet_DCE_RPC);
 
+    global log_policy_dce_rpc: Log::PolicyHook;
+
     ## header info
     type Profinet: record {
         ts              : time &log;                ## Timestamp for when the event happened.
@@ -49,6 +51,8 @@ export {
     ## Event that can be handled to access the profinet record as it is sent to the loggin framework.
     global log_profinet: event(rec: Profinet);
 
+    global log_policy: Log::PolicyHook;
+
     ## header info
     type Profinet_Debug: record {
         ts      : time &log;                ## Timestamp for when the event happened.
@@ -61,10 +65,7 @@ export {
     ## Event that can be handled to access the profinet record as it is sent to the loggin framework.
     global log_profinet_debug: event(rec: Profinet_Debug);
 
-    ## Log policies, for log filtering.
-    global log_policy_profinet: Log::PolicyHook;
-    global log_policy_profinet_dce_rpc: Log::PolicyHook;
-    global log_policy_profinet_debug: Log::PolicyHook;
+    global log_policy_debug: Log::PolicyHook;
     }
 
 redef record connection += {
@@ -86,17 +87,17 @@ event zeek_init() &priority=5 {
                         [$columns=Profinet_DCE_RPC,
                         $ev=log_profinet_dce_rpc,
                         $path="profinet_dce_rpc",
-                        $policy=log_policy_profinet_dce_rpc]);
+                        $policy=log_policy_dce_rpc]);
     Log::create_stream(Profinet::Log_Profinet,
                         [$columns=Profinet,
                         $ev=log_profinet,
                         $path="profinet",
-                        $policy=log_policy_profinet]);
+                        $policy=log_policy]);
     Log::create_stream(Profinet::Log_Profinet_Debug,
                         [$columns=Profinet_Debug,
                         $ev=log_profinet_debug,
                         $path="profinet_debug",
-                        $policy=log_policy_profinet_debug]);
+                        $policy=log_policy_debug]);
     Analyzer::register_for_ports(Analyzer::ANALYZER_PROFINET, ports);
     }
 
